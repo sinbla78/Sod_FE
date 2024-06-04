@@ -1,15 +1,16 @@
-import AuthHeader from "@/components/header/AuthHeader";
+//import AuthHeader from "@/components/header/AuthHeader";
 import styled from "styled-components";
 import { useState } from "react";
+import { LogoImg } from "../assets";
 
 const SignupPage = () => {
-  const [nickname, setNickname] = useState("");
+  const [id, setID] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleNicknameChange = (e) => {
-    setNickname(e.target.value);
+    setID(e.target.value);
   };
 
   const handleEmailChange = (e) => {
@@ -27,7 +28,7 @@ const SignupPage = () => {
   const handleSignupFormSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Nickname:", nickname);
+    console.log("ID:", id);
     console.log("Email:", email);
     console.log("Password:", password);
     console.log("Confirm Password:", confirmPassword);
@@ -37,15 +38,16 @@ const SignupPage = () => {
 
   return (
     <div>
-      <AuthHeader />
+      {/* <AuthHzeader /> */}
       <SignupBox>
         <SignupInner>
+          <Logo src={LogoImg} />
           <h1>회원가입</h1>
           <SignupForm onSubmit={handleSignupFormSubmit}>
             <InputField
               type="text"
-              placeholder="닉네임"
-              value={nickname}
+              placeholder="아이디"
+              value={id}
               onChange={handleNicknameChange}
             />
             <InputField
@@ -84,7 +86,13 @@ const SignupBox = styled.div`
 `;
 
 const SignupInner = styled.div`
+  align-items: center;
   text-align: center;
+  border: 1px solid black;
+  border-radius: 25px;
+  height: 70%;
+  margin-top: 10%;
+  padding: 0 10%;
 `;
 
 const SignupForm = styled.form`
@@ -103,8 +111,8 @@ const InputField = styled.input`
 `;
 
 const SignupButton = styled.button`
-  background-color: #f5ddd6;
-  color: black;
+  background-color: black;
+  color: white;
   max-width: 303px;
   border: none;
   border-radius: 5px;
@@ -112,4 +120,10 @@ const SignupButton = styled.button`
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
+`;
+
+const Logo = styled.img`
+  width: 200px;
+  height: auto;
+  margin-bottem: 50px;
 `;

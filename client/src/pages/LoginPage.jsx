@@ -1,13 +1,15 @@
-import AuthHeader from "@/components/header/AuthHeader";
 import styled from "styled-components";
 import { useState } from "react";
+import { LogoImg } from "../assets";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
+  const [id, setID] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    setID(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -17,31 +19,26 @@ const LoginPage = () => {
   const handleLoginFormSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Email:", email);
+    console.log("ID:", id);
     console.log("Password:", password);
 
     window.location.href = "/";
   };
-
+  const handleSignupFormSubmit = () => {
+    navigate("/signup");
+  };
   return (
     <div>
-      <AuthHeader />
       <LoginBox>
         <LoginInner>
-          <h1>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            로그인
-          </h1>
+          <br />
+          <Logo src={LogoImg} alt="No Image" /> <br />
+          <h1>로그인</h1>
           <LoginForm onSubmit={handleLoginFormSubmit}>
             <InputField
-              type="email"
-              placeholder="이메일"
-              value={email}
+              type="id"
+              placeholder="아이디"
+              value={id}
               onChange={handleEmailChange}
             />
             <InputField
@@ -51,6 +48,9 @@ const LoginPage = () => {
               onChange={handlePasswordChange}
             />
             <LoginButton type="submit">로그인</LoginButton>
+            <GoSignUp onClick={handleSignupFormSubmit}>
+              회원가입 하러가기
+            </GoSignUp>
           </LoginForm>
         </LoginInner>
       </LoginBox>
@@ -67,7 +67,13 @@ const LoginBox = styled.div`
 `;
 
 const LoginInner = styled.div`
+  align-items: center;
   text-align: center;
+  border: 1px solid black;
+  border-radius: 25px;
+  height: 50%;
+  margin-top: 10%;
+  padding: 0 10%;
 `;
 
 const LoginForm = styled.form`
@@ -86,8 +92,8 @@ const InputField = styled.input`
 `;
 
 const LoginButton = styled.button`
-  background-color: #f5ddd6;
-  color: black;
+  background-color: black;
+  color: white;
   max-width: 303px;
   border: none;
   border-radius: 5px;
@@ -95,4 +101,15 @@ const LoginButton = styled.button`
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
+`;
+
+const Logo = styled.img`
+  width: 200px;
+  height: auto;
+`;
+
+const GoSignUp = styled.span`
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
 `;
