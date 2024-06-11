@@ -125,5 +125,4 @@ const SignupButton = styled.button`
 const Logo = styled.img`
   width: 200px;
   height: auto;
-  margin-bottem: 50px;
 `;
