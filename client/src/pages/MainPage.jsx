@@ -34,11 +34,18 @@ const MainPage = () => {
 
           <tbody>
             <tr>
-              <td>김바봉</td>
+              <td>한우리</td>
               <td>2024.6.11</td>
-              <td>비가</td> {/* submit_date로 변경 */}
+              <td>비</td> {/* submit_date로 변경 */}
               <th>오늘은 왜 화요일일까</th>
-              <th>본문 어쩌고 저쩌고</th>
+              <th>오늘 벌써 화요일이 되었는데요! 너무 행복하네요!</th>
+            </tr>
+            <tr>
+              <td>박우재</td>
+              <td>2024.6.19</td>
+              <td>비</td> {/* submit_date로 변경 */}
+              <th>오늘은 왜 수요일일까</th>
+              <th>오늘 벌써 수요일이 되었는데요! 너무 행복하네요!</th>
             </tr>
           </tbody>
         </StyledTable>
@@ -56,7 +63,7 @@ const Header = styled.header`
   align-items: center;
   padding: 0 20px;
   background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 40px rgba(0, 0, 0, 0.1);
 `;
 
 const HeaderTitle = styled.h1`
@@ -79,7 +86,7 @@ const Title = styled.h1`
   margin: 0;
   text-align: center;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 35px;
 `;
 
 const LogoutTitle = styled.h1`
@@ -98,7 +105,7 @@ const Text = styled.div`
 `;
 
 const StyledTable = styled(Table)`
-  width: 60%;
+  width: 100%;
   margin-top: 20px;
   margin-bottom: 30px;
   &.table {

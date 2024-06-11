@@ -22,7 +22,7 @@ const LoginPage = () => {
     console.log("ID:", id);
     console.log("Password:", password);
 
-    window.location.href = "/";
+    window.location.href = "/main";
   };
   const handleSignupFormSubmit = () => {
     navigate("/signup");
