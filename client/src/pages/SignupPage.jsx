@@ -1,4 +1,3 @@
-//import AuthHeader from "@/components/header/AuthHeader";
 import styled from "styled-components";
 import { useState } from "react";
 import { LogoImg } from "../assets";
