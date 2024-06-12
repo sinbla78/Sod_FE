@@ -1,35 +1,40 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const UploadPage = () => {
+const DetailPage = () => {
   const navigate = useNavigate();
   const handleLogin = () => {
     navigate("/login");
   };
-  const handleMain = () => {
-    navigate("/main");
-  };
   const handleUpload = () => {
-    navigate("/main");
+    navigate("/upload");
   };
   return (
     <>
       <Header>
-        <HeaderTitle onClick={handleMain}>메인페이지</HeaderTitle>
+        <HeaderTitle onClick={handleUpload}>일기 업로드</HeaderTitle>
         <LogoutTitle onClick={handleLogin}>로그아웃</LogoutTitle>
       </Header>
+
       <Container>
         <Wrapper>
           <DiaryForm>
             <Title>일기</Title>
             <InputBox>
-              <Input placeHolder="홍길동" width={120} maxLength={10} />
-              <Input placeHolder="19060927" width={120} maxLength={10} />
-              <Input placeHolder="맑음" width={120} maxLength={10} />
-              <Input placeHolder="제목" width={240} maxLength={10} />
+              <Input width={120} maxLength={10}>
+                한우리
+              </Input>
+              <Input width={120} maxLength={10}>
+                2024.06.11
+              </Input>
+              <Input width={120} maxLength={10}>
+                맑음
+              </Input>
+              <Input width={240} maxLength={10}>
+                제목
+              </Input>
             </InputBox>
-            <Textarea placeholder="본문" maxLength={200} />
-            <Button onClick={handleUpload}>업로드</Button>
+            <Textarea maxLength={200}> 본문 </Textarea>
           </DiaryForm>
         </Wrapper>
       </Container>
@@ -37,13 +42,9 @@ const UploadPage = () => {
   );
 };
 
-export default UploadPage;
+export default DetailPage;
 
 const Header = styled.header`
-  position: absolute;
-  top: 0;
-  z-index: 9999;
-  width: 100vw;
   height: 80px;
   display: flex;
   justify-content: space-between;
@@ -63,7 +64,6 @@ const HeaderTitle = styled.h1`
   text-align: center;
   justify-content: center;
 `;
-
 const LogoutTitle = styled.h1`
   width: 180px;
   height: 25px;
@@ -87,14 +87,6 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const Button = styled.button`
-  width: 120px;
-  height: 40px;
-  border-radius: 4px;
-  color: white;
-  background-color: black;
-`;
-
 const DiaryForm = styled.div`
   width: 920px;
   display: flex;
@@ -105,9 +97,6 @@ const DiaryForm = styled.div`
   padding: 20px;
   border: 1px solid black;
   border-radius: 4px;
-  & > ${Button} {
-    align-self: flex-end;
-  }
 `;
 
 const Title = styled.span`
@@ -115,7 +104,7 @@ const Title = styled.span`
   font-weight: bold;
 `;
 
-const Input = styled.input`
+const Input = styled.div`
   width: ${({ width }) => width && `${width}px`};
   height: 40px;
   border: 1px solid black;
@@ -131,7 +120,7 @@ const InputBox = styled.div`
   gap: 30px;
 `;
 
-const Textarea = styled.textarea`
+const Textarea = styled.div`
   width: 100%;
   height: 80px;
   resize: none;

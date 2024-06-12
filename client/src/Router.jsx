@@ -3,6 +3,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MainPage from "./pages/MainPage";
 import UploadPage from "./pages/UploadPage";
+import DetailPage from "./pages/DetailPage";
 
 const Router = () => {
   return (
@@ -12,6 +13,7 @@ const Router = () => {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/main" element={<MainPage />} />
         <Route path="/upload" element={<UploadPage />} />
+        <Route path="/detail" element={<DetailPage />} />
       </Routes>
     </BrowserRouter>
   );

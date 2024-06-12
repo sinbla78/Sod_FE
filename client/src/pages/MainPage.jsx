@@ -1,6 +1,4 @@
 import styled from "styled-components";
-// import { useState } from "react";
-// import { LogoImg } from "../assets";
 import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -12,6 +10,9 @@ const MainPage = () => {
   const handleUpload = () => {
     navigate("/upload");
   };
+  const handleDetail = () => {
+    navigate("/detail");
+  };
   return (
     <>
       <Header>
@@ -19,7 +20,7 @@ const MainPage = () => {
         <LogoutTitle onClick={handleLogin}>로그아웃</LogoutTitle>
       </Header>
       <Text>
-        <Title>일기</Title>
+        <Title>목록</Title>
         <br />
         <StyledTable bordered hover="true">
           <thead>
@@ -32,7 +33,7 @@ const MainPage = () => {
             </tr>
           </thead>
 
-          <tbody>
+          <tbody onClick={handleDetail}>
             <tr>
               <td>한우리</td>
               <td>2024.6.11</td>
@@ -127,7 +128,7 @@ const StyledTable = styled(Table)`
     tbody {
       tr {
         &:hover {
-          background-color: #b8fadd; // 행 호버 시 배경색 변경
+          background-color: #fafad2; // 행 호버 시 배경색 변경
         }
         td {
           color: black;
