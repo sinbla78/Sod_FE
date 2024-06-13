@@ -34,16 +34,44 @@ const MainPage = () => {
 
           <tbody onClick={handleDetail}>
             <tr>
-              <td>한우리</td>
-              <td>2024.6.11</td>
-              <td>비</td> {/* submit_date로 변경 */}
+              <th>한라봉</th>
+              <th>2024.6.11</th>
+              <th>비</th> {/* submit_date로 변경 */}
               <th>오늘은 왜 화요일일까</th>
               <th>오늘 벌써 화요일이 되었는데요! 너무 행복하네요!</th>
             </tr>
             <tr>
-              <td>박우재</td>
-              <td>2024.6.19</td>
-              <td>비</td> {/* submit_date로 변경 */}
+              <th>박우재</th>
+              <th>2024.6.19</th>
+              <th>비</th> {/* submit_date로 변경 */}
+              <th>오늘은 왜 수요일일까</th>
+              <th>오늘 벌써 수요일이 되었는데요! 너무 행복하네요!</th>
+            </tr>
+            <tr>
+              <th>한라봉</th>
+              <th>2024.6.11</th>
+              <th>비</th> {/* submit_date로 변경 */}
+              <th>오늘은 왜 화요일일까</th>
+              <th>오늘 벌써 화요일이 되었는데요! 너무 행복하네요!</th>
+            </tr>
+            <tr>
+              <th>박우재</th>
+              <th>2024.6.19</th>
+              <th>비</th> {/* submit_date로 변경 */}
+              <th>오늘은 왜 수요일일까</th>
+              <th>오늘 벌써 수요일이 되었는데요! 너무 행복하네요!</th>
+            </tr>
+            <tr>
+              <th>한라봉</th>
+              <th>2024.6.11</th>
+              <th>비</th> {/* submit_date로 변경 */}
+              <th>오늘은 왜 화요일일까</th>
+              <th>오늘 벌써 화요일이 되었는데요! 너무 행복하네요!</th>
+            </tr>
+            <tr>
+              <th>박우재</th>
+              <th>2024.6.19</th>
+              <th>비</th> {/* submit_date로 변경 */}
               <th>오늘은 왜 수요일일까</th>
               <th>오늘 벌써 수요일이 되었는데요! 너무 행복하네요!</th>
             </tr>
@@ -93,11 +121,11 @@ const Text = styled.div`
 `;
 
 const StyledTable = styled(Table)`
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 30px;
-  margin-left: 70px;
-  margin-right: 30px;
+  width: 125%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
   &.table {
     // Table 기본 스타일 정의
 
@@ -113,19 +141,13 @@ const StyledTable = styled(Table)`
       }
     }
 
-    // tbody 스타일 정의
+
     tbody {
       tr {
         &:hover {
           background-color: #fafad2; // 행 호버 시 배경색 변경
         }
-        td {
-          color: black;
-        }
-        td:first-of-type {
-          font-weight: 600;
-        }
       }
     }
   }
-`;
+}`;
