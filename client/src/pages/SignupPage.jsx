@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { LogoImg } from "../assets";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
   const [id, setID] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleNicknameChange = (e) => {
     setID(e.target.value);
@@ -26,14 +29,22 @@ const SignupPage = () => {
 
   const handleSignupFormSubmit = (e) => {
     e.preventDefault();
-
-    console.log("ID:", id);
-    console.log("Email:", email);
-    console.log("Password:", password);
-    console.log("Confirm Password:", confirmPassword);
-    alert("회원가입에 성공했습니다.");
-
-    window.location.href = "/login";
+    if (password === confirmPassword) {
+      axios
+        .post("http://localhost:8080/user", {
+          account_id: id,
+          password,
+          email,
+        })
+        .then(() => {
+          navigate("/login");
+        })
+        .catch((e) => {
+          alert(e);
+        });
+    } else {
+      alert("비밀번호가 일치하지 않습니다");
+    }
   };
 
   return (

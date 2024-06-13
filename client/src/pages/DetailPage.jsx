@@ -1,82 +1,49 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const DetailPage = () => {
-  const navigate = useNavigate();
-  const handleLogin = () => {
-    alert("로그아웃에 성공했습니다.");
-    navigate("/login");
-  };
-  const handleUpload = () => {
-    navigate("/upload");
-  };
-  return (
-    <>
-      <Header>
-        <HeaderTitle onClick={handleUpload}>일기 업로드</HeaderTitle>
-        <LogoutTitle onClick={handleLogin}>로그아웃</LogoutTitle>
-      </Header>
+  const [data, setData] = useState({});
+  const { id } = useParams();
 
-      <Container>
-        <Wrapper>
-          <DiaryForm>
-            <Title>일기</Title>
-            <InputBox>
-              <Input width={120} maxLength={10}>
-                한우리
-              </Input>
-              <Input width={120} maxLength={10}>
-                2024.06.11
-              </Input>
-              <Input width={120} maxLength={10}>
-                맑음
-              </Input>
-              <Input width={240} maxLength={10}>
-                오늘은 왜 수요일일까?
-              </Input>
-            </InputBox>
-            <Textarea maxLength={200}>
-              {" "}
-              오늘 벌써 화요일이 되었는데요! 너무 행복하네요!{" "}
-            </Textarea>
-          </DiaryForm>
-        </Wrapper>
-      </Container>
-    </>
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/feed/details/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      })
+      .then(({ data }) => setData(data))
+      .catch((e) => alert(e));
+  }, []);
+  return (
+    <Container>
+      <Wrapper>
+        <DiaryForm>
+          <Title>일기</Title>
+          <InputBox>
+            <Input width={120} maxLength={10}>
+              {data.name}
+            </Input>
+            <Input width={120} maxLength={10}>
+              {data.day}
+            </Input>
+            <Input width={120} maxLength={10}>
+              {data.weather}
+            </Input>
+            <Input width={240} maxLength={10}>
+              {data.title}
+            </Input>
+          </InputBox>
+          <Textarea maxLength={200}>{data.content}</Textarea>
+        </DiaryForm>
+      </Wrapper>
+    </Container>
   );
 };
 
 export default DetailPage;
-
-const Header = styled.header`
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 40px rgba(0, 0, 0, 0.1);
-`;
-
-const HeaderTitle = styled.h1`
-  font-size: 25px;
-  width: 180px;
-  height: 25px;
-  font-size: 24px;
-  color: black;
-  margin: 0;
-  text-align: center;
-  justify-content: center;
-`;
-const LogoutTitle = styled.h1`
-  width: 180px;
-  height: 25px;
-  font-size: 24px;
-  color: black;
-  margin: 0;
-  text-align: center;
-  justify-content: center;
-`;
 
 const Container = styled.div`
   width: 100vw;

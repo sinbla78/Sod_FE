@@ -4,6 +4,7 @@ import SignupPage from "./pages/SignupPage";
 import MainPage from "./pages/MainPage";
 import UploadPage from "./pages/UploadPage";
 import DetailPage from "./pages/DetailPage";
+import HeaderLayout from "./layout/HeaderLayout";
 
 const Router = () => {
   return (
@@ -11,9 +12,11 @@ const Router = () => {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/main" element={<MainPage />} />
-        <Route path="/upload" element={<UploadPage />} />
-        <Route path="/detail" element={<DetailPage />} />
+        <Route element={<HeaderLayout />}>
+          <Route path="/main" element={<MainPage />} />
+          <Route path="/upload" element={<UploadPage />} />
+          <Route path="/detail/:id" element={<DetailPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

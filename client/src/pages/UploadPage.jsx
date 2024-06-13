@@ -1,36 +1,78 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import useInput from "../hooks/useInput";
+import axios from "axios";
 
 const UploadPage = () => {
   const navigate = useNavigate();
-  const handleLogin = () => {
-    alert("로그아웃에 성공했습니다.");
-    navigate("/login");
-  };
-  const handleMain = () => {
-    navigate("/main");
-  };
+
+  const { form, onChange, setForm } = useInput({
+    title: "",
+    content: "",
+    weather: "",
+    day: "",
+    name: "",
+  });
+
   const handleUpload = () => {
-    alert("업로드에 성공했습니다.");
-    navigate("/main");
+    axios
+      .post("http://localhost:8080/feed", form, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      })
+      .then(() => {
+        alert("업로드에 성공하였습니다.");
+        navigate("/main");
+      });
   };
   return (
     <>
-      <Header>
-        <HeaderTitle onClick={handleMain}>메인페이지</HeaderTitle>
-        <LogoutTitle onClick={handleLogin}>로그아웃</LogoutTitle>
-      </Header>
       <Container>
         <Wrapper>
           <DiaryForm>
             <Title>일기</Title>
             <InputBox>
-              <Input placeHolder="홍길동" width={120} maxLength={10} />
-              <Input placeHolder="19060927" width={120} maxLength={10} />
-              <Input placeHolder="맑음" width={120} maxLength={10} />
-              <Input placeHolder="제목" width={240} maxLength={10} />
+              <Input
+                name="name"
+                placeholder="홍길동"
+                width={120}
+                maxLength={10}
+                value={form.name}
+                onChange={onChange}
+              />
+              <Input
+                name="day"
+                placeholder="19060927"
+                width={120}
+                maxLength={10}
+                value={form.day}
+                onChange={onChange}
+              />
+              <Input
+                name="weather"
+                placeholder="맑음"
+                width={120}
+                maxLength={10}
+                value={form.weather}
+                onChange={onChange}
+              />
+              <Input
+                name="title"
+                placeholder="제목"
+                width={240}
+                maxLength={10}
+                value={form.title}
+                onChange={onChange}
+              />
             </InputBox>
-            <Textarea placeholder="본문" maxLength={200} />
+            <Textarea
+              name="content"
+              placeholder="본문"
+              maxLength={200}
+              value={form.content}
+              onChange={onChange}
+            />
             <Button onClick={handleUpload}>업로드</Button>
           </DiaryForm>
         </Wrapper>

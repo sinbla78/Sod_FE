@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { LogoImg } from "../assets";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LoginPage = () => {
   const [id, setID] = useState("");
@@ -16,18 +17,20 @@ const LoginPage = () => {
     setPassword(e.target.value);
   };
 
-  const handleLoginFormSubmit = (e) => {
-    e.preventDefault();
-
-    console.log("ID:", id);
-    console.log("Password:", password);
-    alert("로그인에 성공했습니다.");
-
-    window.location.href = "/main";
+  const handleLoginFormSubmit = () => {
+    axios
+      .post("http://localhost:8080/auth/login", {
+        account_id: id,
+        password,
+      })
+      .then(({ data }) => {
+        localStorage.setItem("access_token", data.access_token);
+        localStorage.setItem("refresh_token", data.refresh_token);
+        navigate("/main");
+      })
+      .catch((e) => alert(e));
   };
-  const handleSignupFormSubmit = () => {
-    navigate("/signup");
-  };
+
   return (
     <div>
       <LoginBox>
@@ -35,7 +38,7 @@ const LoginPage = () => {
           <br />
           <Logo src={LogoImg} alt="No Image" /> <br />
           <h1>로그인</h1>
-          <LoginForm onSubmit={handleLoginFormSubmit}>
+          <LoginForm>
             <InputField
               type="id"
               placeholder="아이디"
@@ -48,8 +51,14 @@ const LoginPage = () => {
               value={password}
               onChange={handlePasswordChange}
             />
-            <LoginButton type="submit">로그인</LoginButton>
-            <GoSignUp onClick={handleSignupFormSubmit}>
+            <LoginButton type="submit" onClick={handleLoginFormSubmit}>
+              로그인
+            </LoginButton>
+            <GoSignUp
+              onClick={() => {
+                window.location.href = "/signup";
+              }}
+            >
               회원가입 하러가기
             </GoSignUp>
           </LoginForm>
@@ -77,7 +86,7 @@ const LoginInner = styled.div`
   padding: 0 10%;
 `;
 
-const LoginForm = styled.form`
+const LoginForm = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
