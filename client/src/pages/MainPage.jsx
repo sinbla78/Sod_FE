@@ -135,8 +135,8 @@ const StyledTable = styled(Table)`
     thead {
       tr {
         th {
-          background-color: gray; // 헤더 배경색 변경
-          color: black; // 헤더 글자색 변경
+          background-color: #B0B0B0; // 헤더 배경색 변경
+          color: #FFFFFF; // 헤더 글자색 변경
         }
       }
     }

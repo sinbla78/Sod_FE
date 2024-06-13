@@ -110,6 +110,6 @@ const Logo = styled.img`
 
 const GoSignUp = styled.span`
   text-decoration: underline;
-  color: blue;
+  color: #669999;
   cursor: pointer;
 `;
