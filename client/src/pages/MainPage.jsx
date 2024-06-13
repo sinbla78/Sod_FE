@@ -20,7 +20,6 @@ const MainPage = () => {
         <LogoutTitle onClick={handleLogin}>로그아웃</LogoutTitle>
       </Header>
       <Text>
-        <Title>목록</Title>
         <br />
         <StyledTable bordered hover="true">
           <thead>
@@ -78,18 +77,6 @@ const HeaderTitle = styled.h1`
   justify-content: center;
 `;
 
-const Title = styled.h1`
-  font-size: 25px;
-  width: 180px;
-  height: 25px;
-  font-size: 24px;
-  color: black;
-  margin: 0;
-  text-align: center;
-  justify-content: center;
-  margin-top: 35px;
-`;
-
 const LogoutTitle = styled.h1`
   width: 180px;
   height: 25px;
@@ -109,6 +96,8 @@ const StyledTable = styled(Table)`
   width: 100%;
   margin-top: 20px;
   margin-bottom: 30px;
+  margin-left: 70px;
+  margin-right: 30px;
   &.table {
     // Table 기본 스타일 정의
 
