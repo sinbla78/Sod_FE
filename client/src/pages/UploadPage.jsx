@@ -4,12 +4,14 @@ import { useNavigate } from "react-router-dom";
 const UploadPage = () => {
   const navigate = useNavigate();
   const handleLogin = () => {
+    alert("로그인에 성공했습니다.");
     navigate("/login");
   };
   const handleMain = () => {
     navigate("/main");
   };
   const handleUpload = () => {
+    alert("업로드에 성공했습니다.");
     navigate("/main");
   };
   return (

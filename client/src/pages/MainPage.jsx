@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const MainPage = () => {
   const navigate = useNavigate();
   const handleLogin = () => {
+    alert("로그아웃에 성공했습니다.");
     navigate("/login");
   };
   const handleUpload = () => {
@@ -125,7 +126,7 @@ const StyledTable = styled(Table)`
   margin-top: 50px;
   margin-bottom: 50px;
   margin-left: 100px;
-  margin-right: 100px;
+
   &.table {
     // Table 기본 스타일 정의
 

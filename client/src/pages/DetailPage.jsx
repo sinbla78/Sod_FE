@@ -31,10 +31,13 @@ const DetailPage = () => {
                 맑음
               </Input>
               <Input width={240} maxLength={10}>
-                제목
+                오늘은 왜 수요일일까?
               </Input>
             </InputBox>
-            <Textarea maxLength={200}> 본문 </Textarea>
+            <Textarea maxLength={200}>
+              {" "}
+              오늘 벌써 화요일이 되었는데요! 너무 행복하네요!{" "}
+            </Textarea>
           </DiaryForm>
         </Wrapper>
       </Container>

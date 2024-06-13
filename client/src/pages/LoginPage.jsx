@@ -21,6 +21,7 @@ const LoginPage = () => {
 
     console.log("ID:", id);
     console.log("Password:", password);
+    alert("로그인에 성공했습니다.");
 
     window.location.href = "/main";
   };

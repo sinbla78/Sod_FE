@@ -31,6 +31,7 @@ const SignupPage = () => {
     console.log("Email:", email);
     console.log("Password:", password);
     console.log("Confirm Password:", confirmPassword);
+    alert("회원가입에 성공했습니다.");
 
     window.location.href = "/login";
   };
