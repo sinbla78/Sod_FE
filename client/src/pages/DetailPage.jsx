@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const DetailPage = () => {
   const navigate = useNavigate();
   const handleLogin = () => {
+    alert("로그아웃에 성공했습니다.");
     navigate("/login");
   };
   const handleUpload = () => {
