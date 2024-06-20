@@ -47,7 +47,11 @@ const MainPage = () => {
               <th>{e.day}</th> {/* Update this key if needed */}
               <th>{e.weather}</th>
               <th>{e.title}</th>
-              <th>{e.content}</th>
+              <th>
+                {e.content.length > 30
+                  ? `${e.content.substring(0, 30)}...`
+                  : e.content}
+              </th>
             </tr>
           ))}
         </tbody>
