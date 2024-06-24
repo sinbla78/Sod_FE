@@ -20,7 +20,11 @@ const MainPage = () => {
         },
       })
       .then(({ data }) => {
-        setData(data);
+        // 데이터를 최신 순서로 받아오기
+        const reversedData = data.reverse();
+        // 최대 50개까지만 데이터로 설정
+        const limitedData = reversedData.slice(0, 50);
+        setData(limitedData);
       })
       .catch((e) => {
         alert(e);
@@ -43,15 +47,15 @@ const MainPage = () => {
         <tbody>
           {data.map((e) => (
             <tr key={e.feed_id} onClick={() => handleDetail(e.feed_id)}>
-              <th>{e.name}</th>
-              <th>{e.day}</th> {/* Update this key if needed */}
-              <th>{e.weather}</th>
-              <th>{e.title}</th>
-              <th>
+              <td>{e.name}</td>
+              <td>{e.day}</td> {/* 필요에 따라 이 키를 수정하세요 */}
+              <td>{e.weather}</td>
+              <td>{e.title}</td>
+              <td>
                 {e.content.length > 30
                   ? `${e.content.substring(0, 30)}...`
                   : e.content}
-              </th>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -73,6 +77,7 @@ const StyledTable = styled(Table)`
   margin-top: 50px;
   margin-bottom: 50px;
   margin-left: 100px;
+  text-align: center; /* 가운데 정렬 추가 */
 
   &.table {
     background-color: white;
