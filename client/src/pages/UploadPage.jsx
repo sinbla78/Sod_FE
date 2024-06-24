@@ -69,7 +69,7 @@ const UploadPage = () => {
             <Textarea
               name="content"
               placeholder="본문"
-              maxLength={200}
+              maxLength={1200}
               value={form.content}
               onChange={onChange}
             />

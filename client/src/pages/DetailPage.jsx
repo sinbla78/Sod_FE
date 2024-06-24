@@ -16,27 +16,35 @@ const DetailPage = () => {
       })
       .then(({ data }) => setData(data))
       .catch((e) => alert(e));
-  }, []);
+  }, [id]);
+
   return (
     <Container>
       <Wrapper>
         <DiaryForm>
           <Title>일기</Title>
           <InputBox>
-            <Input width={120} maxLength={10}>
-              {data.name}
-            </Input>
-            <Input width={120} maxLength={10}>
-              {data.day}
-            </Input>
-            <Input width={120} maxLength={10}>
-              {data.weather}
-            </Input>
-            <Input width={240} maxLength={10}>
-              {data.title}
-            </Input>
+            <Input
+              width={120}
+              maxLength={10}
+              value={data.name || ""}
+              readOnly
+            />
+            <Input width={120} maxLength={10} value={data.day || ""} readOnly />
+            <Input
+              width={120}
+              maxLength={10}
+              value={data.weather || ""}
+              readOnly
+            />
+            <Input
+              width={240}
+              maxLength={10}
+              value={data.title || ""}
+              readOnly
+            />
           </InputBox>
-          <Textarea maxLength={200}>{data.content}</Textarea>
+          <Textarea maxLength={1200} value={data.content || ""} readOnly />
         </DiaryForm>
       </Wrapper>
     </Container>
@@ -75,15 +83,13 @@ const Title = styled.span`
   font-weight: bold;
 `;
 
-const Input = styled.div`
+const Input = styled.input`
   width: ${({ width }) => width && `${width}px`};
   height: 40px;
   border: 1px solid black;
   border-radius: 4px;
   padding: 2px;
-  &::placholder {
-    color: gray;
-  }
+  background-color: #f9f9f9;
 `;
 
 const InputBox = styled.div`
@@ -91,11 +97,13 @@ const InputBox = styled.div`
   gap: 30px;
 `;
 
-const Textarea = styled.div`
+const Textarea = styled.textarea`
   width: 100%;
-  height: 80px;
+  height: 150px; /* 필요에 따라 높이 조절 */
   resize: none;
   border: 1px solid black;
   border-radius: 4px;
   padding: 2px;
+  background-color: #f9f9f9;
+  overflow: auto; /* 내용이 초과될 경우 스크롤 생성 */
 `;
