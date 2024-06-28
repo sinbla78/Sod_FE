@@ -6,7 +6,7 @@ import axios from "axios";
 const UploadPage = () => {
   const navigate = useNavigate();
 
-  const { form, onChange, setForm } = useInput({
+  const { form, onChange } = useInput({
     title: "",
     content: "",
     weather: "",
@@ -14,7 +14,43 @@ const UploadPage = () => {
     name: "",
   });
 
+  // 입력 필드가 하나라도 비어 있는지 확인하는 함수
+  const isFormEmpty = () => {
+    return (
+      !form.name || !form.day || !form.weather || !form.title || !form.content
+    );
+  };
+
+  // 욕설 검사 함수
+  const hasProfanity = (text) => {
+    const profanityList = ["씨발", "개새끼", "병신"]; // 욕설 리스트 예시
+    for (let profanity of profanityList) {
+      if (text.includes(profanity)) {
+        return true; // 욕설이 포함된 경우 true 반환
+      }
+    }
+    return false;
+  };
+
   const handleUpload = () => {
+    // 입력 필드가 하나라도 비어 있으면 업로드를 막음
+    if (isFormEmpty()) {
+      alert("모든 항목을 입력해주세요.");
+      return;
+    }
+
+    // 모든 입력 필드에 대해 욕설 검사 수행
+    if (
+      hasProfanity(form.name) ||
+      hasProfanity(form.day) ||
+      hasProfanity(form.weather) ||
+      hasProfanity(form.title) ||
+      hasProfanity(form.content)
+    ) {
+      alert("입력 내용에 욕설이 포함되어 있습니다. 다시 확인해주세요.");
+      return; // 욕설이 포함된 경우 업로드를 막습니다.
+    }
+
     axios
       .post("http://localhost:8080/feed", form, {
         headers: {
@@ -24,8 +60,13 @@ const UploadPage = () => {
       .then(() => {
         alert("업로드에 성공하였습니다.");
         navigate("/main");
+      })
+      .catch((error) => {
+        alert("업로드 중 오류가 발생하였습니다. 다시 시도해주세요.");
+        console.error("Upload error:", error);
       });
   };
+
   return (
     <>
       <Container>
@@ -83,41 +124,6 @@ const UploadPage = () => {
 
 export default UploadPage;
 
-const Header = styled.header`
-  position: absolute;
-  top: 0;
-  z-index: 9999;
-  width: 100vw;
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 40px rgba(0, 0, 0, 0.1);
-`;
-
-const HeaderTitle = styled.h1`
-  font-size: 25px;
-  width: 180px;
-  height: 25px;
-  font-size: 24px;
-  color: black;
-  margin: 0;
-  text-align: center;
-  justify-content: center;
-`;
-
-const LogoutTitle = styled.h1`
-  width: 180px;
-  height: 25px;
-  font-size: 24px;
-  color: black;
-  margin: 0;
-  text-align: center;
-  justify-content: center;
-`;
-
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -165,9 +171,6 @@ const Input = styled.input`
   border: 1px solid black;
   border-radius: 4px;
   padding: 2px;
-  &::placholder {
-    color: gray;
-  }
 `;
 
 const InputBox = styled.div`
